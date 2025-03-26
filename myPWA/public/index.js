@@ -1,5 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("database/data_source.db");
+const db = new sqlite3.Database(".database/datasource.db");
 
 // Fetch events from the database
 fetch('/events') // Adjust the endpoint as necessary
