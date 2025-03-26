@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
+    <link rel="stylesheet" href="css/style.css" />   
+    <title>Events near you</title>
+    <link rel="manifest" href="myPWA\public\manifest.json" />
+    <link rel="icon" type="image/x-icon" href="images\logo.webp">
+    <meta name="theme-color" content="#14E6DD" />
+</head>
+<body>
+        <nav class="sidenav" id="mySidenav">
+            <button class="closebtn" onclick="closeNav()">×</button>
+            <img src="images/logo.webp" alt="Logo" class="logo" />
+            <span class="app-name">Astralis</span>
+            <br>
+            <a href="#">Home</a>
+            <br>
+            <a href="about.html">About</a>
+            <br>
+            <a href="suggest.html">Suggest</a>
+            <br>
+        </nav>   
+        <header>
+            <button class="menu-btn" onclick="openNav()">☰</button>
+            <img src="images/logo.webp" alt="Logo" class="logo"/>
+            <span class="app-name"><h1>Astralis</h1></span>
+        </header>
+        <main>
+            <div class="container"></div>  
+        </main>
+    
+        <script type="module" src="js/app.js"></script>
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+            }
+        </script>
+        
+    <!-- this is the table i got from nithya -->
+    <div class="container">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Event ID</th>
+                    <th>Name</th>
+                    <th>Hyperlink</th>
+                    <th>About</th>
+                    <th>Image</th>
+                    <th>Event Date</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody id="events-table">
+                <!-- JavaScript will insert rows here -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // Fetch data from Node.js API
+        fetch("http://localhost:5000/events")
+            .then(response => response.json())
+            .then(events => {
+                const tableBody = document.getElementById("events-table");
+                events.forEach(event => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${event.eventID}</td>
+                        <td>${event.name}</td>
+                        <td><a href="${event.hyperlink}" target="_blank">Link</a></td>
+                        <td>${event.about}</td>
+                        <td><img src="${event.image}" alt="Event Image" width="50"></td>
+                        <td>${event.event_date}</td>
+                        <td>${event.time}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    </script> 
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

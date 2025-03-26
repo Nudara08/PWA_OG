@@ -1,0 +1,20 @@
+{
+    "name": "Astralis: Event tracker",
+    "short_name": "Astralis",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#14E6DD",
+    "icons": [
+    {
+        "src": "logo.webp",
+        "sizes": "192x192",
+        "type": "image/png"
+    },
+    {
+        "src": "images/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+    ]
+}
