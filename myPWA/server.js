@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Routes
 app.get("/api/Events", (req, res) => {
     console.log("Fetching Events...");
-    db.all("SELECT * FROM cars", (err, rows) => {
+    db.all("SELECT * FROM Events", (err, rows) => {
         if (err) {
             console.error("Database error:", err);
             return res.status(500).json({ error: err.message });

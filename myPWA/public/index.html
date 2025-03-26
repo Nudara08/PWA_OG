@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
+    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';"> -->
     <link rel="stylesheet" href="css/style.css" />   
-    <title>Events near you</title>
+<!--<title>Events near you</title>
     <link rel="manifest" href="myPWA\public\manifest.json" />
     <link rel="icon" type="image/x-icon" href="images\logo.webp">
-    <meta name="theme-color" content="#14E6DD" />
+    <meta name="theme-color" content="#14E6DD" /> -->
 </head>
 <body>
         <nav class="sidenav" id="mySidenav">
@@ -64,12 +64,13 @@
     </div>
     <script>
         // Fetch data from Node.js API
-        fetch("http://localhost:5000/events")
+        fetch("http://localhost:5000/api/Events")
             .then(response => response.json())
             .then(events => {
                 const tableBody = document.getElementById("events-table");
                 events.forEach(event => {
                     const row = document.createElement("tr");
+                    console.log(event);
                     row.innerHTML = `
                         <td>${event.eventID}</td>
                         <td>${event.name}</td>
